@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/assets/css/sankalan-2018/register.min.css">
+    <title>Register</title>
+  </head>
+  <body>
+  <?php if (isset($user)) { ?>
+    <header>
+      <a href="/sankalan" tabindex="-1">Home</a>
+      <a href="/sankalan/events" tabindex="-1">Events</a>
+      <a href="/sankalan/logout" tabindex="-1">Logout</a>
+    </header>
+    <form class="register" action="/sankalan/register" method="post" tabindex="-1">
+      <p>Hi <?= empty($user['name']) ? 'Nerd (you didn\'t tell your name to Google, but please tell us)' : $user['name'] ?>!</p>
+      <p>We need a few more details and you're all done!</p>
+    <?php if (empty($user['name'])): ?>
+      <div class="field">
+        <label for="name">Your Name</label>
+        <input type="text" name="name" id="name" placeholder="Name" title="Full Name" tabindex="0" required/>
+      </div>
+    <?php endif; // empty user name ?>
+      <div class="field">
+        <label for="org">College or Department or Organisation</label>
+        <input type="text" name="org" id="org" placeholder="College/Department/Organisation" title="Name of organisation you are related to" tabindex="0" required/>
+      </div>
+      <div class="field">
+        <label for="mobile">Mobile Number</label>
+        <input type="text" name="mobile" id="mobile" placeholder="Mobile number" pattern="[0-9]{10}" value="" title="10-digit mobile number" tabindex="0" required/>
+      </div>
+      <button type="submit" tabindex="0">Register</button>
+    </form>
+  <?php } else { // no user ?>
+    <a class="sign-in-button" href="<?= $login_url ?>">Login with Google</a>
+  <?php } // $user ?>
+  <?php if (isset($error)) { ?>
+    <div class="error">
+      <p>Some error occured while authenticating. Please logout and try again later.</p>
+      <p>Error: <?= $error['message'] ?></p>
+    </div>
+  <?php } // $error ?>
+  </body>
+</html>
