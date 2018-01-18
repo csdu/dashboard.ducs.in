@@ -52,7 +52,7 @@ class LoginUser
         }
 
         // check password
-        include getcwd() .'/../src/app/utils.php';
+        include getcwd() .'/../src/app/utils/database.php';
         $secret = userHashToSecret($user['hash']);
         if ($pass === $secret) {
             $this->session->set('uid', $user['id']);

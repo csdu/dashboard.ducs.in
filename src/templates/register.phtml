@@ -8,13 +8,9 @@
   </head>
   <body>
   <?php if (isset($user)) { ?>
-    <header>
-      <a href="/sankalan" tabindex="-1">Home</a>
-      <a href="/sankalan/events" tabindex="-1">Events</a>
-      <a href="/sankalan/logout" tabindex="-1">Logout</a>
-    </header>
+    <?= partials('header'); ?>
     <form class="register" action="/sankalan/register" method="post" tabindex="-1">
-      <p>Hi <?= empty($user['name']) ? 'Nerd (you didn\'t tell your name to Google, but please tell us)' : $user['name'] ?>!</p>
+      <p>Hi <?= defaults($user['name'], 'Nerd (you didn\'t tell your name to Google, but please do tell us)') ?>!</p>
       <p>We need a few more details and you're all done!</p>
     <?php if (empty($user['name'])): ?>
       <div class="field">

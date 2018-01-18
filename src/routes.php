@@ -3,7 +3,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use DUCS\Template;
 
-require_once 'app/utils.php';
+require_once 'app/utils/general.php';
 
 $request = Request::createFromGlobals();
 $uri = rtrim($request->getPathInfo(), '/');
