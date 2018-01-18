@@ -1,0 +1,109 @@
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  outline: none
+
+body
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+  overflow-y: auto
+  font-family: Ubuntu, sans-serif
+  font-size: 16px
+  line-height: 1.5
+
+header
+  display: flex
+  padding: 0.3rem
+  background: #eee
+  border-bottom: 4px solid #039be5
+
+  a
+    text-decoration: none
+    color: #0288d1
+    display: inline-block
+    padding: 0.2rem
+    margin: 0 0.1rem
+
+    &:last-child
+      margin-left: auto
+
+    &:hover
+      color: #333
+
+form
+  display: flex
+  flex-direction: column
+  padding: 1em
+
+  p
+    color: rgba(0, 0, 0, 0.8)
+    font-size: 90%
+
+  > p:nth-of-type(2)
+    margin-bottom: 1em
+    padding-bottom: 0.3rem
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+
+.field
+  margin: 0.4rem 0
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+label
+  flex: 1
+  color: #555
+  font-size: 90%
+
+input
+  padding: 0.4rem
+  border: none
+  border: 1px solid #eee
+  border-radius: 5px
+  flex: 1
+  font-size: 1em
+  line-height: 1.5
+  font-family: Ubuntu, sans-serif
+  transition: all 0.2s cubic-bezier(0.18, 0.74, 0.27, 0.86)
+
+  &:focus
+    border-color: #01acff
+    border-radius: 0
+
+    &:required:invalid
+      border-color: #f44336
+
+button
+  background: none
+  border: none
+  background: #01acff
+  padding: 0.8rem
+  font-size: 1em
+  text-transform: uppercase
+  font-weight: bold
+  color: #fff
+  border-radius: 2px
+  margin: 1em auto
+  max-width: 200px
+  width: 100%
+  box-shadow: 8px 7px 0px 0px #eee
+  transition: all 0.2s cubic-bezier(0.18, 0.74, 0.27, 0.86)
+
+  &:hover, &:active, &:focus
+    cursor: pointer
+    background: #15b2ff
+    box-shadow: (-8px) -7px 0px 0px #009ce8
+
+@media screen and (max-width: 600px)
+  .field
+    flex-direction: column
+    align-items: flex-start
+
+  input
+    min-width: 100%
+
+  label
+    min-width: 100%
+    color: #009ce8

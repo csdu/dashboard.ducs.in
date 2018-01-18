@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Welcome <?= $name ?> | DUCS Sankalan 2018</title>
+    <link rel="stylesheet" href="/assets/css/sankalan-2018/ticket.min.css"/>
+  </head>
+  <body>
+    <header>
+      <a href="/sankalan">Home</a>
+      <a href="/sankalan/events">Events</a>
+      <a href="/sankalan/me">Account</a>
+      <a href="/sankalan/logout">Logout</a>
+    </header>
+    <main>
+      <h3>Sankalan 2018 - Ticket</h3>
+      <div class="row">Name: <span><?= $name ?></span></div>
+      <div class="row">Email: <span><?= $email ?></span></div>
+      <div class="row">Mobile: <span><?= $mobile ?></span></div>
+      <div class="row">Organisation: <span><?= $org ?></span></div>
+      <div class="row">&nbsp;</div>
+      <div class="row" id="userid">ID: <span><?= $uid ?></span></div>
+      <div class="row" title="Click masked text to toggle view secret">Secret: <span id="secret" data-text="<?= $secret ?>" data-mask="<?= $secretMask ?>"><?= $secretMask ?></span></div>
+      <div class="qr" id="qrcode" data-text="sankalan-2018-user-<?= $uid ?>"></div>
+      <p class="note">The information above is your identity at Sankalan. Please make sure that it is available with you during the event.
+      <br>We recommend you to <strong>save this page as a screenshot</strong> on your device.
+      <br>Also, please note your secret somewhere. It might be required at later stage.</p>
+    </main>
+    <script src="/assets/js/qrcode.min.js" charset="utf-8"></script>
+    <script src="/assets/js/sankalan-2018/ticket.min.js" charset="utf-8"></script>
+  </body>
+</html>

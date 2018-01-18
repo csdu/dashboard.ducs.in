@@ -3,3 +3,4 @@ composer.lock
 node_modules
 package-lock.json
 public_html/assets
+client_credentials.json
