@@ -1,0 +1,17 @@
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+trim_trailing_whitespace = true
+
+[*.{js,phtml,html,json}]
+charset = utf-8
+indent_size = 2
+
+[*.{php}]
+indent_size = 4
+
+[*.{sass}]
+indent_size = 2

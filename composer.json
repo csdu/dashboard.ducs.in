@@ -1,0 +1,15 @@
+{
+  "require": {
+    "symfony/http-foundation": "^3.4",
+    "google/apiclient": "^2.0",
+    "twig/twig": "^1.35"
+  },
+  "autoload": {
+    "psr-4": {
+      "DUCS\\": "src/app"
+    }
+  },
+  "extra": {
+    "symfony-web-dir": "public_html"
+  }
+}
