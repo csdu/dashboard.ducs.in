@@ -10,7 +10,7 @@ class Database
     private $conn;
     public function __construct()
     {
-        $config = parse_ini_file('db.config.ini');
+        include 'db.config.php'; // $config
         $db_path = 'mysql:' . 'host=' . $config['db_host'] . ';dbname=' . $config['db_name'];
         try {
             $this->conn = new PDO(
