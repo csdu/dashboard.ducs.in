@@ -18,6 +18,13 @@ if ('' === $uri) {
     $sankalan = new DUCS\Sankalan\_2018\Sankalan($uri);
     $response = $sankalan->getResponse();
 } else {
-    $html = '<html><body><h1>Page Not Found</h1>'.$uri.'</body></html>';
-    $response = new Response($html, Response::HTTP_NOT_FOUND);
+    $response = new Response();
+    $response->setStatusCode(Response::HTTP_NOT_FOUND);
 }
+
+$get404Response = function() use($uri)
+{
+    $html = '<html><body><h1>Page Not Found</h1>'. $uri .'</body></html>';
+    $response = new Response($html, Response::HTTP_NOT_FOUND);
+    return $response;
+};

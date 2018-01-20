@@ -4,4 +4,4 @@ node_modules
 package-lock.json
 public_html/assets
 client_credentials.json
-config.ini
+db.config.php

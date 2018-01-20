@@ -2,7 +2,7 @@
 namespace DUCS\Sankalan\_2018;
 
 use DUCS\Template;
-use DUCS\Sankalan\_2018\Database\Database;
+use DUCS\Sankalan\_2018\Database;
 
 class Home
 {
@@ -14,7 +14,7 @@ class Home
             $item = $db->query('SELECT * FROM test WHERE id = :id LIMIT 1', array(':id' => $i), true);
             $html .= $item['id'] . ' - ' . $item['name'] . '<br/>';
         }
-        // $html = Template::render('layout', array(
+        // $html = Template::render('s18/layout', array(
         //     'title' => 'Welcome to Sankalan',
         //     'content' => 'We welcome you to Sankalan 2018',
         // ));

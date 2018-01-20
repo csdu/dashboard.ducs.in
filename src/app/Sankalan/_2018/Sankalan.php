@@ -15,7 +15,11 @@ class Sankalan extends Router
 
     protected function handleRoute()
     {
-        switch ($this->uri) {
+        $uri = $this->uri;
+        if (startsWith($uri, '/quiz')) {
+            $uri = '/quiz';
+        }
+        switch ($uri) {
             case '':
                 $this->html = Home::view();
                 break;
@@ -57,7 +61,15 @@ class Sankalan extends Router
                 $this->html = Me::view();
                 break;
 
+            case '/quiz':
+                $quiz = new Quiz\Quiz($this->uri);
+                $this->res = $quiz->getResponse();
+                break;
+
             default:
+                if($this->res->isNotFound()) {
+                    return;
+                }
                 $this->res->setStatusCode(200);
                 $this->res->setContent(json_encode(array(
                     'data' => 123,
@@ -66,38 +78,5 @@ class Sankalan extends Router
                 $this->res->headers->set('Content-Type', 'application/json');
                 break;
         }
-        // if ($this->uri === '') {
-        //     $this->html = Home::view();
-        // } elseif ($this->uri === '/ticket') {
-        //     $ticket = new Ticket();
-        //     $this->res = $ticket->view();
-        // } elseif ($this->uri === '/register') {
-        //     $google_auth = new Auth\GoogleAuth();
-        //     if ($this->req->isMethod('GET')) {
-        //         $this->res = $google_auth->view();
-        //     } elseif ($this->req->isMethod('POST')) {
-        //         $this->res = $google_auth->registerUser();
-        //     }
-        // } elseif ($this->uri === '/auth') {
-        //     $google_auth = new Auth\GoogleAuth();
-        //     $this->res = $google_auth->authorize();
-        // } elseif ($this->uri === '/logout') {
-        //     $google_auth = new Auth\GoogleAuth();
-        //     $this->res = $google_auth->logout();
-        // } elseif ($this->uri === '/login') {
-        //     $login = new Auth\LoginUser();
-        //     if ($this->req->isMethod('GET')) {
-        //         $this->res = $login->view();
-        //     } elseif ($this->req->isMethod('POST')) {
-        //         $this->res = $login->login();
-        //     }
-        // } else {
-        //     $this->res->setStatusCode(200);
-        //     $this->res->setContent(json_encode(array(
-        //         'data' => 123,
-        //         'nested' => array('el' => 10),
-        //     )));
-        //     $this->res->headers->set('Content-Type', 'application/json');
-        // }
     }
 }

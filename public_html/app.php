@@ -8,4 +8,9 @@ require_once '../src/routes.php';
 
 // echo the headers and send the response
 $response->headers->set('X-Powered-By', 'Sid Vishnoi');
+
+if($response->isNotFound()) {
+    $response = $get404Response();
+}
+
 $response->send();

@@ -1,6 +1,6 @@
 <?php
 
-namespace DUCS\Sankalan\_2018\Database;
+namespace DUCS\Sankalan\_2018;
 
 use PDO;
 use PDOException;
@@ -10,7 +10,7 @@ class Database
     private $conn;
     public function __construct()
     {
-        $config = parse_ini_file('config.ini');
+        $config = parse_ini_file('db.config.ini');
         $db_path = 'mysql:' . 'host=' . $config['db_host'] . ';dbname=' . $config['db_name'];
         try {
             $this->conn = new PDO(

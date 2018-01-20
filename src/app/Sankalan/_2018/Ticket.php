@@ -5,7 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use DUCS\Sankalan\_2018\Database\Database;
+use DUCS\Sankalan\_2018\Database;
 use DUCS\Template;
 
 class Ticket
@@ -22,9 +22,6 @@ class Ticket
 
     private function findInDatabase()
     {
-        // XXX:
-        // $this->userid = '109704294546727240876';
-
         $db = new Database();
         return $db->query(
             "SELECT * FROM user WHERE id = :id",
@@ -36,13 +33,13 @@ class Ticket
     public function view()
     {
         $user = $this->findInDatabase();
-        include getcwd() .'/../src/app/utils.php';
+        include getcwd() .'/../src/app/utils/database.php';
         if ($user) {
             $user['email'] = $user['email'] . '@gmail.com';
             $user['uid'] = $user['hash'];
             $user['secret'] = userHashToSecret($user['hash']);
             $user['secretMask'] = str_repeat('●', strlen($user['secret']));
-            $html = Template::render('ticket', $user);
+            $html = Template::render('s18/ticket', $user);
             $res = new Response();
             $res->setContent($html);
         } else {
