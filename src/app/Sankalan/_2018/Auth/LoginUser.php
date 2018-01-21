@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use DUCS\Template;
-use \DUCS\Sankalan\_2018\Database\Database;
+use \DUCS\Sankalan\_2018\Database;
 
 /**
  *  Allow user to login either via Google account
@@ -70,7 +70,7 @@ class LoginUser
             return new RedirectResponse('/sankalan/me');
         }
         $invalid = $this->req->query->get('invalid');
-        $html = Template::render('login', [
+        $html = Template::render('s18/login', [
             'login_url' => $this->client->createAuthUrl(),
             'invalid' => $invalid
         ]);

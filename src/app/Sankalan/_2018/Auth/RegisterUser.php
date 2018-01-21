@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use \DUCS\Template;
-use \DUCS\Sankalan\_2018\Database\Database;
+use \DUCS\Sankalan\_2018\Database;
 
 /**
  *
@@ -108,7 +108,7 @@ class RegisterUser
             return $this->res;
         }
 
-        $html = Template::render('register', array(
+        $html = Template::render('s18/register', array(
             'login_url' => $this->client->createAuthUrl(),
             'user' => $this->user,
             'error' => $this->error,
