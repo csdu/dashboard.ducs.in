@@ -108,7 +108,7 @@ class RegisterUser
             return $this->res;
         }
 
-        $html = Template::render('s18/register', array(
+        $html = Template::render('sn18/register', array(
             'login_url' => $this->client->createAuthUrl(),
             'user' => $this->user,
             'error' => $this->error,

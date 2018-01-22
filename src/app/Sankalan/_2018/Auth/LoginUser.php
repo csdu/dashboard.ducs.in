@@ -70,7 +70,7 @@ class LoginUser
             return new RedirectResponse('/sankalan/me');
         }
         $invalid = $this->req->query->get('invalid');
-        $html = Template::render('s18/login', [
+        $html = Template::render('sn18/login', [
             'login_url' => $this->client->createAuthUrl(),
             'invalid' => $invalid
         ]);

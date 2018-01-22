@@ -22,7 +22,7 @@ class Me
             if (!$user) {
                 return new RedirectResponse('/sankalan/register');
             }
-            $html = Template::render('s18/me', $user);
+            $html = Template::render('sn18/me', $user);
             return $html;
         }
 

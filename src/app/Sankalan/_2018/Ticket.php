@@ -39,7 +39,7 @@ class Ticket
             $user['uid'] = $user['hash'];
             $user['secret'] = userHashToSecret($user['hash']);
             $user['secretMask'] = str_repeat('●', strlen($user['secret']));
-            $html = Template::render('s18/ticket', $user);
+            $html = Template::render('sn18/ticket', $user);
             $res = new Response();
             $res->setContent($html);
         } else {

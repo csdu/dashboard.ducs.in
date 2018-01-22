@@ -1,3 +1,4 @@
+const path = require('path');
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const babel = require('gulp-babel');
@@ -6,11 +7,10 @@ const uglifyJs = require('gulp-uglify');
 const cleanCSS = require('gulp-clean-css');
 const clean = require('gulp-clean');
 const rename = require('gulp-rename');
-// const concat = require('gulp-concat');
+const hash = require('gulp-hash');
 
-
-const srcDir = './src/assets';
-const distDir = './public_html/assets';
+const srcDir = path.join(process.cwd(), './src/assets');
+const distDir = path.join(process.cwd(), './public_html/assets');
 
 const paths = {
   css: {
@@ -29,6 +29,7 @@ const paths = {
     src: `${srcDir}/js/**/*.min.js`,
     dest: `${distDir}/js`
   },
+  assetManifest: path.join(process.cwd(), '/src/templates/assets.json'),
 };
 
 const options = {
@@ -43,7 +44,23 @@ const options = {
   },
   sass: {
     outputStyle: 'compressed',
-  }
+  },
+  rename: {
+    suffix: '.min'
+  },
+  hash: {
+    hash: {
+      hashLength: 12,
+    },
+    js: {
+      deleteOld: true,
+      sourceDir: paths.js.dest,
+    },
+    css: {
+      deleteOld: true,
+      sourceDir: paths.css.dest,
+    },
+  },
 };
 
 const cleanDist = () =>
@@ -57,37 +74,47 @@ const minifyJs = () =>
     since: gulp.lastRun(minifyJs)
   })
   .pipe(sourcemaps.init())
+  .pipe(hash(options.hash.hash))
   .pipe(babel(options.babel))
   .pipe(uglifyJs(options.uglifyJs))
+  .pipe(rename(options.rename))
   .pipe(sourcemaps.write('.'))
-  .pipe(rename({
-    suffix: '.min'
-  }))
-  .pipe(gulp.dest(paths.js.dest));
+  .pipe(gulp.dest(paths.js.dest))
+  .pipe(hash.manifest(paths.assetManifest, options.hash.js))
+  .pipe(gulp.dest('.'));
 
 const copyJs = () =>
   gulp.src(paths.jsCopy.src, {
     since: gulp.lastRun(copyJs)
   })
-  .pipe(gulp.dest(paths.jsCopy.dest));
+  .pipe(hash(options.hash.hash))
+  .pipe(gulp.dest(paths.jsCopy.dest))
+  .pipe(hash.manifest(paths.assetManifest, options.hash.js))
+  .pipe(gulp.dest('.'));
 
 const copyCss = () =>
   gulp.src(paths.css.src, {
     since: gulp.lastRun(copyCss)
   })
+  .pipe(hash(options.hash.hash))
   .pipe(cleanCSS())
-  .pipe(gulp.dest(paths.css.dest));
+  .pipe(gulp.dest(paths.css.dest))
+  .pipe(hash.manifest(paths.assetManifest, options.hash.css))
+  .pipe(gulp.dest('.'));
 
 const compileSass = () =>
   gulp.src(paths.sass.src, {
     since: gulp.lastRun(compileSass)
   })
+  .pipe(hash(options.hash.hash))
   .pipe(sass(options.sass).on('error', sass.logError))
   .pipe(cleanCSS())
   .pipe(rename({
     suffix: '.min'
   }))
-  .pipe(gulp.dest(paths.sass.dest));
+  .pipe(gulp.dest(paths.sass.dest))
+  .pipe(hash.manifest(paths.assetManifest, options.hash.css))
+  .pipe(gulp.dest('.'));
 
 const build = gulp.parallel(
   minifyJs,

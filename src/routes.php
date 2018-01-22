@@ -9,7 +9,7 @@ $request = Request::createFromGlobals();
 $uri = rtrim($request->getPathInfo(), '/');
 
 if ('' === $uri) {
-    $html = Template::render('layout', array(
+    $html = Template::render('sn18/layout', array(
         'title' => 'DUCS',
         'content' => 'Home page',
     ));
