@@ -21,7 +21,7 @@ class Sankalan extends Router
         }
         switch ($uri) {
             case '':
-                $this->html = Home::view();
+                $this->html = 'hey you!';
                 break;
 
             case '/ticket':

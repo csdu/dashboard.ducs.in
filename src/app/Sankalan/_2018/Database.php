@@ -11,7 +11,7 @@ class Database
     public function __construct()
     {
         include 'db.config.php'; // $config
-        $db_path = 'mysql:' . 'host=' . $config['db_host'] . ';dbname=' . $config['db_name'];
+        $db_path = 'mysql:' . 'host=' . $config['db_host'] . ';port=' . $config['db_port'] . ';dbname=' . $config['db_name'];
         try {
             $this->conn = new PDO(
                 $db_path,
