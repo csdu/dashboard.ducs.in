@@ -27,5 +27,5 @@ $mapAsset = function($name) use ($assets)
         'js' => 'js',
         'css' => 'css',
     ];
-    return '/assets/' . $mapExtToFolder[$ext] . '/' . $assets[$name];
+    return ASSETS_HOST_NAME . $mapExtToFolder[$ext] . '/' . $assets[$name];
 };

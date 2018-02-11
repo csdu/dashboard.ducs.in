@@ -9,8 +9,8 @@ const clean = require('gulp-clean');
 const rename = require('gulp-rename');
 const hash = require('gulp-hash');
 
-const srcDir = path.join(process.cwd(), './src/assets');
-const distDir = path.join(process.cwd(), './public_html/assets');
+const srcDir = path.join(process.cwd(), './src-assets');
+const distDir = path.join(process.cwd(), './assets');
 
 const paths = {
   css: {
