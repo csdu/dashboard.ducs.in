@@ -6,3 +6,4 @@ assets
 client_credentials.json
 db.config.php
 src/templates/assets.json
+*.zip
