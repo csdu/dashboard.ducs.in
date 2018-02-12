@@ -1,7 +1,12 @@
 <?php
 
 // assets mapping from source to hashed
-$assets = json_decode(file_get_contents($templatesDir . 'assets.json'), true);
+if (ASSETS_HOST_NAME === 'http://localhost:8000/') {
+    $assets = json_decode(file_get_contents($templatesDir . 'assets.json'), true);
+    echo "loading assets from json";
+} else {
+    require_once $templatesDir . 'assets.php';
+}
 
 // allows including files from templates/partials into template files
 function partials($p)
