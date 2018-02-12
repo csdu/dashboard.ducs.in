@@ -1,6 +1,5 @@
 const path = require('path');
 const gulp = require('gulp');
-const sourcemaps = require('gulp-sourcemaps');
 const babel = require('gulp-babel');
 const sass = require('gulp-sass');
 const uglifyJs = require('gulp-uglify');
@@ -71,11 +70,9 @@ const cleanDist = () =>
 const minifyJs = () => {
   if (isProduction) {
     return gulp.src(paths.js.src)
-      .pipe(sourcemaps.init())
       .pipe(hash(options.hash.hash))
       .pipe(babel(options.babel))
       .pipe(uglifyJs(options.uglifyJs))
-      .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(paths.js.dest))
       .pipe(hash.manifest(paths.assetManifest, options.hash.js))
       .pipe(gulp.dest('.'));
