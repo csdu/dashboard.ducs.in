@@ -11,7 +11,7 @@ fs.readFile(assetManifest.json, 'utf-8', (err, jsonString) => {
 
   let phpStr = '<?php \n$assets = [\n';
   for (const key in json) {
-    phpStr += `    '${key}' => '${json[key]}',\n`
+    phpStr += `    '${key.replace('.sass', '.css')}' => '${json[key]}',\n`
   }
   phpStr += '];'
 
