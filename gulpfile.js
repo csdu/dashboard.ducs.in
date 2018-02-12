@@ -135,9 +135,7 @@ const compileSass = () => {
       .pipe(hash.manifest(paths.assetManifest, options.hash.css))
       .pipe(gulp.dest('.'));
   }
-  return gulp.src(paths.sass.src, {
-    since: gulp.lastRun(compileSass),
-  })
+  return gulp.src(paths.sass.src)
     .pipe(sass(options.sass).on('error', sass.logError))
     .pipe(hash(options.hash.hash))
     .pipe(gulp.dest(paths.sass.dest))
