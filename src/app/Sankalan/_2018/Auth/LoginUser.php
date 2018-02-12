@@ -41,8 +41,10 @@ class LoginUser
             return new RedirectResponse($next);
         }
         $email = $this->req->request->get('email');
-        $id = explode('@gmail.com', $email)[0];
         $pass = $this->req->request->get('password');
+
+        include getcwd() . '/../src/app/utils/database.php';
+        $id = formatEmail($email);
 
         $db = new Database();
         $user = $db->query('SELECT * FROM user WHERE email = :email LIMIT 1', ['email' => $id], true);
@@ -72,7 +74,13 @@ class LoginUser
         $invalid = $this->req->query->get('invalid');
         $html = Template::render('sn18/login', [
             'login_url' => $this->client->createAuthUrl(),
-            'invalid' => $invalid
+            'invalid' => $invalid,
+            'state' => [
+                'type' => isset($invalid) ? 'error' : '',
+                'msg' => isset($invalid)
+                    ? 'Login failed. ' . (($invalid == 1) ? 'Invalid Email.' : 'Invalid Credentials.')
+                    : '',
+            ]
         ]);
         $this->res = new Response($html);
         return $this->res;

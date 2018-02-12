@@ -71,9 +71,10 @@ class RegisterUser
             return $this->res;
         }
 
+        include getcwd() . '/../src/app/utils/database.php';
         $user['now'] = time();
         $user['mobile'] = substr($user['mobile'], 0, 10);
-        $user['email'] = explode('@gmail.com', $user['email'])[0];
+        $user['email'] = formatEmail($user['email']);
         $user['hash'] = md5(serialize($user));
 
         $count = $db->modify('INSERT INTO user (
@@ -85,7 +86,7 @@ class RegisterUser
             $this->res->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
         } else {
             $this->session->remove('user');
-            $this->res = new RedirectResponse('/sankalan/ticket');
+            $this->res = new RedirectResponse('/sankalan');
         }
         return $this->res;
     }

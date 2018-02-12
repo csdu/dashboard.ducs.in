@@ -48,7 +48,7 @@ class GoogleAuth
                 $google_oauth =new \Google_Service_Oauth2($this->client);
                 $this->user = $google_oauth->userinfo->get();
                 $this->session->set('user', $this->user);
-                $this->res = new RedirectResponse('/sankalan/register?next=true');
+                $this->res = new RedirectResponse('/sankalan/register');
             } catch (Exception $e) {
                 $this->res = new RedirectResponse('/sankalan/register?error=' . $e.getMessage());
             }
