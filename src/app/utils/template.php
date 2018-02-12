@@ -3,16 +3,16 @@
 // assets mapping from source to hashed
 if (ASSETS_HOST_NAME === 'http://localhost:8000/') {
     $assets = json_decode(file_get_contents($templatesDir . 'assets.json'), true);
-    echo "loading assets from json";
 } else {
     require_once $templatesDir . 'assets.php';
 }
 
 // allows including files from templates/partials into template files
-function partials($p)
+function partials($p, $locals = [])
 {
     $templatesDir = getcwd() . '/../src/templates/';
-    require $templatesDir . 'partials/' . $p . '.phtml';
+    extract($locals, EXTR_SKIP);
+    include $templatesDir . 'partials/' . $p . '.phtml';
 };
 
 // returns default if current variable is not set/empty
