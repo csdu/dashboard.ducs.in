@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <?= partials('sn18/head') ?>
+    <title>Dashboard // Sankalan 2018</title>
+    <link rel="stylesheet" href="<?= $mapAsset('sn18/common.css') ?>">
+    <link rel="stylesheet" href="<?= $mapAsset('sn18/index.css') ?>">
+  </head>
+  <body>
+    <?= partials('sn18/header', [
+      'navItem' => [
+        'action' => '/sankalan/logout',
+        'title' => 'Logout'
+      ]
+    ]) ?>
+    <main>
+      <div class="banner">Welcome <?= $name ?> <br/>&lt;<?= $email ?>@gmail.com&gt;</div>
+      <div class="">
+        <a class="button" href="/sankalan/ticket">View Ticket</a>
+      </div>
+
+      <div class="section">
+        <h3>My events:</h3>
+        <p>Coming soon...</p>
+      </div>
+      <div class="section">
+        <h3>My teams</h3>
+        <p>Coming soon...</p>
+      </div>
+
+      <div class="section">
+        <h4>Sankalan</h4>
+        <a href="http://www.ducs.in/sankalan/">Go to the main Sankalan website</a>
+      </div>
+
+      <p class="note">You have been registered for Sankalan 2018. This registration is required for generating your identity at Sankalan.</p>
+      <p class="note">Keep in mind you need to register to events seprately at the event venue. <strong>Make sure to bring the ticket.</strong></p>
+    </main>
+  </body>
+</html>

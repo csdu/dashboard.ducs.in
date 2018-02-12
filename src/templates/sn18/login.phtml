@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Login</title>
+    <?= partials('sn18/head') ?>
+    <title>Login // Sankalan 2018</title>
+    <link rel="stylesheet" href="<?= $mapAsset('sn18/common.css') ?>">
+    <link rel="stylesheet" href="<?= $mapAsset('sn18/register.css') ?>">
   </head>
   <body>
-    <a href="<?= $login_url ?>">Login with Google</a>
-
-    <form class="" action="" method="post">
-      <input type="email" name="email" value="">
-      <input type="password" name="password" value="">
-      <button type="submit" name="button">Login</button>
-    </form>
+    <?= partials('sn18/header', [
+      'navItem' => [
+        'action' => 'http://ducs.in/sankalan/',
+        'title' => 'Main Website'
+      ]
+    ]) ?>
+    <main>
+      <div class="banner <?= $state['type'] ?>"><?= $state['msg'] ?></div>
+      <div><a href="<?= $login_url ?>" class="button">Login with Google</a></div>
+      <p class="note"></p>
+      <form class="" action="" method="post">
+        <h2 style="text-align:center">Or login via your email-secret combination</h2>
+        <br>
+        <div class="field">
+          <label for="email">Your Email</label>
+          <input type="email" name="email" placeholder="Your registered Gmail ID" tabindex="0" required>
+        </div>
+        <div class="field">
+          <label for="password">Your Secret</label>
+          <input type="password" name="password" placeholder="Secret from ticket" tabindex="0" required>
+        </div>
+        <div class="field"><button type="submit" name="button" class="button">Login</button></div>
+      </form>
+    </main>
   </body>
 </html>

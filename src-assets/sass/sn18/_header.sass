@@ -1,0 +1,96 @@
+header
+  display: flex
+  width: 100%
+  z-index: 2000
+  background: #fff
+  align-items: center
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.12)
+  transition: transform 0.5s $anim-cubic
+
+  a
+    color: #000 !important
+
+  .logo
+    font-family: $font-bold
+    letter-spacing: 3px
+    font-size: 1.4em
+    padding: 0.8em
+    position: relative
+    text-transform: uppercase
+
+    &:before, &:after
+      content: "2018"
+      position: absolute
+      display: block
+      right: 1.2em
+      top: 0.5em
+      font-family: $font-primary
+      font-size: 14px
+
+    &:after
+      content: "Dashboard"
+      top: auto
+      bottom: 0.2em
+
+  .nav-item
+    margin-left: auto
+    transition-delay: 0.8s
+    position: relative
+    transition: transform 0.5s $anim-cubic
+
+    a
+      font-family: $font-bold
+      letter-spacing: 0.05em
+      text-transform: uppercase
+      display: block
+      font-size: 16px
+      padding: 10px 10px 10px 45px
+
+      &:after
+        bottom: calc(50% - 2px - 0.5em)
+        content: ""
+        height: 3px
+        left: 40px
+        position: absolute
+        background: $color-tr
+        transition: width 0.2s cubic-bezier(0.58, 0.3, 0.005, 1)
+        width: 0
+
+      &:hover
+        &:after
+          left: 45px
+          width: calc(100% - 40px - 15px)
+
+        &:before
+          transform: rotate(-10deg)
+          transition: transform 0.2s
+
+      &:before
+        top: 0
+        left: 0
+        background-size: 40px
+        background-repeat: no-repeat
+        height: 40px
+        width: 40px
+        display: block
+        content: ""
+        position: absolute
+        background-size: 100% auto
+        background-image: url("http://www.ducs.in/assets/images/one.svg")
+        background-repeat: no-repeat
+
+@media screen and (max-width: 700px)
+  header
+    .logo
+      font-size: 1em
+
+      &:before, &::after
+        font-size: 12px
+        top: 0.3em
+        right: 0.8em
+
+      &::after
+        top: auto
+
+    .nav-item a
+      font-size: 14px

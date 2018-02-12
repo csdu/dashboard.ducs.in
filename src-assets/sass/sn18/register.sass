@@ -1,41 +1,35 @@
-*
-  margin: 0
-  padding: 0
-  box-sizing: border-box
-  outline: none
+@import _variables
 
 body
+  background-color: #fafafa
+  min-height: 100vh
+
+main
   display: flex
   flex-direction: column
-  min-height: 100vh
-  overflow-y: auto
-  font-family: Ubuntu, sans-serif
-  font-size: 16px
-  line-height: 1.5
+  flex: 1
+  padding-bottom: 1em
 
-header
-  display: flex
-  padding: 0.3rem
-  background: #eee
-  border-bottom: 4px solid #039be5
+.note
+  color: rgba(0, 0, 0, 0.8)
+  font-size: 90%
+  margin-top: auto
+  padding: 0 1em
 
-  a
-    text-decoration: none
-    color: #0288d1
-    display: inline-block
-    padding: 0.2rem
-    margin: 0 0.1rem
+  & + .note
+    margin-top: 6px
 
-    &:last-child
-      margin-left: auto
-
-    &:hover
-      color: #333
+.sign-in-button
+  img
+    max-width: 24px
+    margin-right: 0.6em
 
 form
   display: flex
   flex-direction: column
   padding: 1em
+  background: #fff
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.12)
 
   p
     color: rgba(0, 0, 0, 0.8)
@@ -61,40 +55,23 @@ input
   padding: 0.4rem
   border: none
   border: 1px solid #eee
-  border-radius: 5px
   flex: 1
   font-size: 1em
   line-height: 1.5
-  font-family: Ubuntu, sans-serif
+  font-family: $font-primary
   transition: all 0.2s cubic-bezier(0.18, 0.74, 0.27, 0.86)
 
   &:focus
-    border-color: #01acff
+    border-color: $color-bl
     border-radius: 0
 
     &:required:invalid
-      border-color: #f44336
+      border-color: $color-tr
 
 button
   background: none
   border: none
-  background: #01acff
-  padding: 0.8rem
-  font-size: 1em
-  text-transform: uppercase
-  font-weight: bold
-  color: #fff
-  border-radius: 2px
-  margin: 1em auto
-  max-width: 200px
-  width: 100%
-  box-shadow: 8px 7px 0px 0px #eee
-  transition: all 0.2s cubic-bezier(0.18, 0.74, 0.27, 0.86)
-
-  &:hover, &:active, &:focus
-    cursor: pointer
-    background: #15b2ff
-    box-shadow: (-8px) -7px 0px 0px #009ce8
+  font-family: $font-primary
 
 @media screen and (max-width: 600px)
   .field

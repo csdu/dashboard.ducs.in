@@ -1,0 +1,42 @@
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  outline: none
+
+html
+  font-family: $font-primary
+  font-size: 14px
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  font-weight: 500
+  line-height: 1.4
+
+body
+  overflow-x: hidden
+  overflow-y: scroll
+  display: flex
+  flex-direction: column
+  background-image: url($bg-image)
+  background-size: 25px
+
+a
+  text-decoration: none
+  background-color: transparent
+  color: #256ec1
+
+img
+  max-width: 100%
+
+\::selection
+  background: $color-tr
+  color: #fff
+
+nav ul
+  list-style: none
+
+h1, h2, h3, h4
+  font-weight: 800
+  letter-spacing: 0.05em
+  line-height: 1.25
+  text-transform: uppercase

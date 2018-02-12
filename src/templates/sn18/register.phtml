@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="<?= $mapAsset('sn18/register.sass') ?>">
-    <title>Register</title>
+    <?= partials('sn18/head') ?>
+    <link rel="stylesheet" href="<?= $mapAsset('sn18/common.css') ?>">
+    <link rel="stylesheet" href="<?= $mapAsset('sn18/register.css') ?>">
+    <title>Register // Sankalan 2018</title>
   </head>
   <body>
+  <?= partials('sn18/header', [
+    'navItem' => [
+      'action' => 'http://www.ducs.in/sankalan/',
+      'title' => 'Main'
+    ]
+  ]); ?>
+  <main>
   <?php if (isset($user)) { ?>
-    <?= partials('header'); ?>
     <form class="register" action="/sankalan/register" method="post" tabindex="-1">
       <p>Hi <?= defaults($user['name'], 'Nerd (you didn\'t tell your name to Google, but please do tell us)') ?>!</p>
       <p>We need a few more details and you're all done!</p>
     <?php if (empty($user['name'])): ?>
       <div class="field">
         <label for="name">Your Name</label>
-        <input type="text" name="name" id="name" placeholder="Name" title="Full Name" tabindex="0" required/>
+        <input type="text" name="name" id="name" placeholder="Name" title="Full Name (only alphabets/spaces allowed, max length = 40)" pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$" maxlength="40" tabindex="0" required/>
       </div>
     <?php endif; // empty user name ?>
       <div class="field">
         <label for="org">College or Department or Organisation</label>
-        <input type="text" name="org" id="org" placeholder="College/Department/Organisation" title="Name of organisation you are related to" tabindex="0" required/>
+        <input type="text" name="org" id="org" placeholder="College/Department/Organisation" title="Name of organisation you are related to (only alphabets/spaces allowed, max length = 80)" pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$" maxlength="80" tabindex="0" required/>
       </div>
       <div class="field">
         <label for="mobile">Mobile Number</label>
-        <input type="text" name="mobile" id="mobile" placeholder="Mobile number" pattern="[0-9]{10}" value="" title="10-digit mobile number" tabindex="0" required/>
+        <input type="text" name="mobile" id="mobile" placeholder="10-digit Mobile number" pattern="[0-9]{10}" value="" title="10-digit mobile number" tabindex="0" required/>
       </div>
-      <button type="submit" tabindex="0">Register</button>
+      <button type="submit" class="button" tabindex="0">Register</button>
     </form>
+    <script type="text/javascript">
+      document.querySelector('input').focus();
+    </script>
   <?php } else { // no user ?>
-    <a class="sign-in-button" href="<?= $login_url ?>">Login with Google</a>
+    <a class="sign-in-button button" href="<?= $login_url ?>"><img src="https://unpkg.com/simple-icons@1.2.19/icons/google.svg" alt="Google">Sign-in with Google</a>
+    <p class="note">
+      By clicking the sign-in button above, you agree to our <a href="http://wwww.ducs.in/sankalan/terms/">terms and conditions</a>.
+    </p>
   <?php } // $user ?>
   <?php if (isset($error)) { ?>
     <div class="error">
@@ -37,5 +49,6 @@
       <p>Error: <?= $error['message'] ?></p>
     </div>
   <?php } // $error ?>
+  </main>
   </body>
 </html>

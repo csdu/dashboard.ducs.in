@@ -1,0 +1,19 @@
+a.button, .button
+  background: $color-tl
+  display: inline-block
+  max-width: 256px
+  padding: 0.8rem
+  font-size: 16px
+  text-transform: uppercase
+  font-weight: bold
+  color: #000
+  margin: 1em
+  position: relative
+  box-shadow: 8px 7px 0px 0px #333
+  transition: all 0.2s cubic-bezier(0.18, 0.74, 0.27, 0.86)
+
+  &:hover, &:active, &:focus
+    cursor: pointer
+    right: 2px
+    top: 2px
+    box-shadow: (-8px) -7px 0px 0px darken($color-tl, 10)

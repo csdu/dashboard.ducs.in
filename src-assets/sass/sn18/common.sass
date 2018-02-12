@@ -1,0 +1,28 @@
+@import _variables
+@import _reset
+@import _header
+@import _button
+
+.note
+  color: rgba(0, 0, 0, 0.8)
+  font-size: 90%
+  margin-top: auto
+  padding: 0 1em
+
+  & + .note
+    margin-top: 6px
+
+.banner
+  text-align: center
+  padding: 0.5em
+  background-color: $color-br
+  background-image: url($bg-image)
+  background-size: 15px
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.46)
+
+  &:empty
+    padding: 0
+
+  &.error
+    background-color: #f01e1e
+    color: #fff

@@ -1,36 +1,8 @@
-*
-  margin: 0
-  padding: 0
-  box-sizing: border-box
+@import _variables
 
 body
-  display: flex
-  flex-direction: column
-  min-height: 100vh
-  overflow-y: auto
-  font-family: 'Ubuntu', sans-serif
-  font-size: 16px
-  line-height: 1.5
   background: #eee
-
-header
-  display: flex
-  padding: 0.3rem
-  background: #fff
-  border-bottom: 4px solid #039be5
-
-  a
-    text-decoration: none
-    color: #0288d1
-    display: inline-block
-    padding: 0.2rem
-    margin: 0 0.1rem
-
-    &:last-child
-      margin-left: auto
-
-    &:hover
-      color: #333
+  min-height: 100vh
 
 main
   padding: 1rem
@@ -39,8 +11,8 @@ main
   height: 100%
   flex-direction: column
   max-width: 700px
-  margin: auto
   background: #fff
+  margin: 1em auto
   box-shadow: 0px 1px 8px 0px #8e8e8e
 
 .row
@@ -75,6 +47,21 @@ main
   font-size: 90%
   margin-top: auto
 
+@media screen and (max-width: 600px)
+  main
+    border-top: 4px solid $color-br
+    margin: 0 auto
+
 @media print
+  body
+    min-height: auto
+    background: #fff
+
   header
     display: none
+
+  main
+    padding: 1em
+    margin: 0
+    box-shadow: none
+    max-width: 100%

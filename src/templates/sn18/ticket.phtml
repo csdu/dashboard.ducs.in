@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Welcome <?= $name ?> | DUCS Sankalan 2018</title>
-    <link rel="stylesheet" href="<?= $mapAsset('sn18/ticket.sass') ?>"/>
+    <?= partials('sn18/head') ?>
+    <title>Ticket // Sankalan 2018</title>
+    <link rel="stylesheet" href="<?= $mapAsset('sn18/common.css') ?>">
+    <link rel="stylesheet" href="<?= $mapAsset('sn18/ticket.css') ?>"/>
   </head>
   <body>
-    <header>
-      <a href="/sankalan">Home</a>
-      <a href="/sankalan/events">Events</a>
-      <a href="/sankalan/me">Account</a>
-      <a href="/sankalan/logout">Logout</a>
-    </header>
+    <?= partials('sn18/header', [
+      'navItem' => [
+        'action' => '/sankalan/logout',
+        'title' => 'Logout'
+      ]
+    ]) ?>
     <main>
       <h3>Sankalan 2018 - Ticket</h3>
       <div class="row">Name: <span><?= $name ?></span></div>
