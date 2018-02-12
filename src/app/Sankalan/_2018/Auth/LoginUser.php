@@ -34,7 +34,7 @@ class LoginUser
         $this->res = new Response();
     }
 
-    public function login($next = '/sankalan/me')
+    public function login($next = '/sankalan')
     {
         $uid_session = $this->session->get('uid');
         if (isset($uid_session)) {
@@ -67,7 +67,7 @@ class LoginUser
     public function view() {
         $uid_session = $this->session->get('uid');
         if (isset($uid_session)) {
-            return new RedirectResponse('/sankalan/me');
+            return new RedirectResponse('/sankalan');
         }
         $invalid = $this->req->query->get('invalid');
         $html = Template::render('sn18/login', [

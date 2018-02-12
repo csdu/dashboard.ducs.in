@@ -21,7 +21,7 @@ class Sankalan extends Router
         }
         switch ($uri) {
             case '':
-                $this->html = 'hey you!';
+                $this->html = Me::view();
                 break;
 
             case '/ticket':
@@ -57,10 +57,6 @@ class Sankalan extends Router
                 }
                 break;
 
-            case '/me':
-                $this->html = Me::view();
-                break;
-
             case '/quiz':
                 $quiz = new Quiz\Quiz($this->uri);
                 $this->res = $quiz->getResponse();
@@ -70,12 +66,7 @@ class Sankalan extends Router
                 if($this->res->isNotFound()) {
                     return;
                 }
-                $this->res->setStatusCode(200);
-                $this->res->setContent(json_encode(array(
-                    'data' => 123,
-                    'nested' => array('el' => 10),
-                )));
-                $this->res->headers->set('Content-Type', 'application/json');
+                $this->res->setStatusCode(400);
                 break;
         }
     }

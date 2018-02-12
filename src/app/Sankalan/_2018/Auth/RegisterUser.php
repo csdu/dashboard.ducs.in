@@ -35,14 +35,14 @@ class RegisterUser
     public function registerUser()
     {
         if (!isset($this->user)) {
-            $this->res = new RedirectResponse('/sankalan/me');
+            $this->res = new RedirectResponse('/sankalan');
             return $this->res;
         }
         $db = new Database();
         $userAlreadyRegistered = $db->query('SELECT id FROM user WHERE id = :id', array('id' => $this->user['id']), true);
         if ($userAlreadyRegistered) {
             $this->session->remove('user');
-            $this->res = new RedirectResponse('/sankalan/me');
+            $this->res = new RedirectResponse('/sankalan');
             return $this->res;
         }
         $user = array(
@@ -104,7 +104,7 @@ class RegisterUser
             $db = new Database();
             $userAlreadyRegistered = $db->query('SELECT id FROM user WHERE id = :id LIMIT 1', array('id' => $uid), true);
             if ($userAlreadyRegistered) {
-                $this->res = new RedirectResponse('/sankalan/me');
+                $this->res = new RedirectResponse('/sankalan');
                 $this->user = $this->session->remove('user');
                 return $this->res;
             }
