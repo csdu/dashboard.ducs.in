@@ -100,12 +100,14 @@ class RegisterUser
             $this->session->set('uid', $uid);
         }
 
-        $db = new Database();
-        $userAlreadyRegistered = $db->query('SELECT id FROM user WHERE id = :id LIMIT 1', array('id' => $uid), true);
-        if ($userAlreadyRegistered) {
-            $this->res = new RedirectResponse('/sankalan/me');
-            $this->user = $this->session->remove('user');
-            return $this->res;
+        if (isset($uid)){
+            $db = new Database();
+            $userAlreadyRegistered = $db->query('SELECT id FROM user WHERE id = :id LIMIT 1', array('id' => $uid), true);
+            if ($userAlreadyRegistered) {
+                $this->res = new RedirectResponse('/sankalan/me');
+                $this->user = $this->session->remove('user');
+                return $this->res;
+            }
         }
 
         $html = Template::render('sn18/register', array(
