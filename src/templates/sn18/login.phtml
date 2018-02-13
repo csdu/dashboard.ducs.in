@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <?= partials('sn18/head') ?>
     <title>Login // Sankalan 2018</title>
@@ -15,7 +15,7 @@
     ]) ?>
     <main>
       <div class="banner <?= $state['type'] ?>"><?= $state['msg'] ?></div>
-      <div><a href="<?= $login_url ?>" class="button">Login with Google</a></div>
+      <a href="<?= $login_url ?>" class="sign-in-button button"><img src="https://unpkg.com/simple-icons@1.2.19/icons/google.svg" alt="Google">Login with Google</a>
       <p class="note"></p>
       <form class="" action="" method="post">
         <h2 style="text-align:center">Or login via your email-secret combination</h2>

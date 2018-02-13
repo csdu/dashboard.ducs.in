@@ -6,28 +6,33 @@ const uglifyJs = require('gulp-uglify');
 const cleanCSS = require('gulp-clean-css');
 const clean = require('gulp-clean');
 const hash = require('gulp-hash');
+const nodeSass = require('node-sass');
 
 const srcDir = path.join(process.cwd(), './src-assets');
 const distDir = path.join(process.cwd(), './assets');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const assetBasePath = isProduction
+  ? 'http://cdn.ducs.in'
+  : 'http://localhost:8000';
+
 const paths = {
   css: {
     src: `${srcDir}/css/**/*.css`,
-    dest: `${distDir}/css`,
+    dest: `${distDir}/css/dash`,
   },
   sass: {
     src: `${srcDir}/sass/**/*.sass`,
-    dest: `${distDir}/css`,
+    dest: `${distDir}/css/dash`,
   },
   js: {
     src: [`${srcDir}/js/**/*.js`, `!${srcDir}/js/**/*.min.js`],
-    dest: `${distDir}/js`,
+    dest: `${distDir}/js/dash`,
   },
   jsCopy: {
     src: `${srcDir}/js/**/*.min.js`,
-    dest: `${distDir}/js`,
+    dest: `${distDir}/js/dash`,
   },
   assetManifest: path.join(process.cwd(), '/src/templates/assets.json'),
 };
@@ -44,6 +49,12 @@ const options = {
   },
   sass: {
     outputStyle: 'compressed',
+    functions: {
+      'mapImg($img)': function _mapImg(img) {
+        const p = `${assetBasePath}${img.getValue()}`;
+        return new nodeSass.types.String(p);
+      },
+    },
   },
   hash: {
     hash: {
