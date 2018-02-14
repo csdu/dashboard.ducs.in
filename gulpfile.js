@@ -14,7 +14,7 @@ const distDir = path.join(process.cwd(), './assets');
 const isProduction = process.env.NODE_ENV === 'production';
 
 const assetBasePath = isProduction
-  ? 'http://cdn.ducs.in'
+  ? 'https://cdn.ducs.in'
   : 'http://localhost:8000';
 
 const paths = {

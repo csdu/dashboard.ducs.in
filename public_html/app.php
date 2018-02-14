@@ -10,8 +10,8 @@ if ($_SERVER['SERVER_ADDR'] === '127.0.0.1') {
     define('HOST_NAME', 'http://dash.ducs.in/');
     define('ASSETS_HOST_NAME', 'http://localhost:8000/');
 } else {
-    define('HOST_NAME', 'http://dashboard.ducs.in/');
-    define('ASSETS_HOST_NAME', 'http://cdn.ducs.in/');
+    define('HOST_NAME', 'https://dashboard.ducs.in/');
+    define('ASSETS_HOST_NAME', 'https://cdn.ducs.in/');
 }
 
 require_once '../src/routes.php';
