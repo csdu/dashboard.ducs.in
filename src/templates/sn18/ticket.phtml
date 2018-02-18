@@ -19,6 +19,7 @@
       <div class="row">Email: <span><?= $email ?></span></div>
       <div class="row">Mobile: <span><?= $mobile ?></span></div>
       <div class="row">Organisation: <span><?= $org ?></span></div>
+      <div class="row">Accomodation: <span><?= $accomodation === '1' ? 'TRUE' : 'FALSE' ?></span></div>
       <div class="row">&nbsp;</div>
       <div class="row" id="userid">ID: <span><?= $uid ?></span></div>
       <div class="row" title="Click masked text to toggle view secret">Secret: <span id="secret" data-text="<?= $secret ?>" data-mask="<?= $secretMask ?>"><?= $secretMask ?></span></div>

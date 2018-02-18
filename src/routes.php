@@ -15,7 +15,7 @@ if ('' === $uri) {
     ));
     $response = new Response($html);
 } elseif (startsWith($uri, '/sankalan')) {
-    $sankalan = new DUCS\Sankalan\_2018\Sankalan($uri);
+    $sankalan = new DUCS\Sankalan\Sankalan($uri);
     $response = $sankalan->getResponse();
 } else {
     $response = new Response();

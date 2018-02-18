@@ -1,6 +1,6 @@
 <?php
 
-namespace DUCS\Sankalan\_2018;
+namespace DUCS\Sankalan;
 
 use PDO;
 use PDOException;

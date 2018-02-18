@@ -1,11 +1,11 @@
 <?php
-namespace DUCS\Sankalan\_2018;
+namespace DUCS\Sankalan;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use DUCS\Sankalan\_2018\Database;
+use DUCS\Sankalan\Database;
 use DUCS\Template;
 
 class Ticket

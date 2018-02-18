@@ -15,7 +15,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const assetBasePath = isProduction
   ? 'https://cdn.ducs.in'
-  : 'http://localhost:8000';
+  : 'http://localhost:8001'; // for cdn.ducs.in/{type}/www
 
 const paths = {
   css: {

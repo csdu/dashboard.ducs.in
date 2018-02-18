@@ -1,13 +1,13 @@
 <?php
 
-namespace DUCS\Sankalan\_2018\Auth;
+namespace DUCS\Sankalan\Auth;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use DUCS\Template;
-use \DUCS\Sankalan\_2018\Database;
+use \DUCS\Sankalan\Database;
 
 /**
  *  Allow user to login either via Google account
@@ -27,16 +27,23 @@ class LoginUser
     {
         $this->req = Request::createFromGlobals();
         $this->session = new Session();
-        // $this->session->start();
+        $this->session->start();
         $this->client = new \Google_Client();
-        $this->client->setAuthConfig(getcwd() . '/../src/app/Sankalan/_2018/Auth/client_credentials.json');
-        $this->client->addScope('https://www.googleapis.com/auth/userinfo.email');
+        $this->client->setAuthConfig(getcwd() . '/../src/app/Sankalan/Auth/client_credentials.json');
+        $this->client->setScopes([
+            "https://www.googleapis.com/auth/plus.me",
+            "https://www.googleapis.com/auth/userinfo.profile",
+            "https://www.googleapis.com/auth/userinfo.email",
+        ]);
         $this->res = new Response();
     }
 
     public function login($next = '/sankalan')
     {
-        $uid_session = $this->session->get('uid');
+        $uid_session = $this->session->get('ugid');
+        if (!isset($uid_session)) {
+            $uid_session = $this->session->get('uid');
+        }
         if (isset($uid_session)) {
             return new RedirectResponse($next);
         }
@@ -58,7 +65,7 @@ class LoginUser
         $secret = userHashToSecret($user['hash']);
         if ($pass === $secret) {
             $this->session->set('uid', $user['id']);
-            // $this->session->migrate(true, 3600); // set session life time
+            $this->session->set('ugid', $user['gid']);
             return new RedirectResponse($next);
         } else {
             // invalid password
@@ -67,7 +74,14 @@ class LoginUser
     }
 
     public function view() {
-        $uid_session = $this->session->get('uid');
+        if (isset($user)) {
+            $this->session->set('ugid', $user['gid']);
+        } else {
+            $uid_session = $this->session->get('ugid');
+            if (!isset($uid_session)) {
+                $uid_session = $this->session->get('uid');
+            }
+        }
         if (isset($uid_session)) {
             return new RedirectResponse('/sankalan');
         }

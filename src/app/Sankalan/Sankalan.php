@@ -1,5 +1,5 @@
 <?php
-namespace DUCS\Sankalan\_2018;
+namespace DUCS\Sankalan;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

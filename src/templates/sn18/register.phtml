@@ -15,25 +15,47 @@
   ]); ?>
   <main>
   <?php if (isset($user)) { ?>
-    <form class="register" action="/sankalan/register" method="post" tabindex="-1">
-      <p>Hi <?= defaults($user['name'], 'Nerd (you didn\'t tell your name to Google, but please do tell us)') ?>!</p>
+    <div class="banner alt">
+      <p>Hi <?= defaults($user['name'], '')?>! &lt;<?= $user['email'] ?>&gt;</p>
       <p>We need a few more details and you're all done!</p>
+    </div>
+    <form class="register" action="/sankalan/register" method="post" tabindex="-1">
     <?php if (empty($user['name'])): ?>
       <div class="field">
         <label for="name">Your Name</label>
         <input type="text" name="name" id="name" placeholder="Name" title="Full Name (only alphabets/spaces allowed, max length = 40)" pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$" maxlength="40" tabindex="0" required/>
       </div>
     <?php endif; // empty user name ?>
+    <?php if (empty($user['email'])): ?>
+      <div class="field">
+        <label for="email">Your GMail ID // we, somehow, couldn't figure it out :-(</label>
+        <input type="email" name="email" id="email" placeholder="Email" title="You GMail ID, max length = 50)" pattern="^[A-Za-z0-9\.]{1,40}@gmail.com$" maxlength="50" tabindex="0" required/>
+      </div>
+    <?php endif; // empty user name ?>
       <div class="field">
         <label for="org">College or Department or Organisation</label>
-        <input type="text" name="org" id="org" placeholder="College/Department/Organisation" title="Name of organisation you are related to (only alphabets/spaces allowed, max length = 80)" pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$" maxlength="80" tabindex="0" required/>
+        <input type="text" name="org" id="org" placeholder="College/Department/Organisation" title="Name of organisation you are related to (only alphabets/spaces allowed, max length = 80)" pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$" value="<?= $user['org'] ?>" maxlength="80" tabindex="0" required/>
       </div>
       <div class="field">
         <label for="mobile">Mobile Number</label>
         <input type="text" name="mobile" id="mobile" placeholder="10-digit Mobile number" pattern="[0-9]{10}" value="" title="10-digit mobile number" tabindex="0" required/>
       </div>
+      <div class="field">
+        <label for="">Do you need accomodation?* </label>
+        <span>
+          <input type="checkbox" name="accmo" id="accmo">
+          <label for="accmo">Yes, I need accomodation.</label>
+        </span>
+      </div>
       <button type="submit" class="button" tabindex="0">Register</button>
     </form>
+    <p class="note">
+      *Accomodation: (Limited seats). Available only to participants coming from long distances on "first come, first served" basis.<br><br>
+      &#8226; You can team up with rest of your teammates at the registration desk.<br>
+      &#8226; Your team will need to pay a registration fee (of INR 200) at the registration desk.<br>
+      &#8226; The fee will be paid on behalf of your team, which will give you and your teammates access to all events and offers at Sankalan. <br>
+      &#8226; See <a href="https://ducs.in/sankalan/faq/">FAQ</a> for details.
+    </p>
     <script type="text/javascript">
       document.querySelector('input').focus();
     </script>

@@ -1,6 +1,6 @@
 <?php
 
-namespace DUCS\Sankalan\_2018\Quiz;
+namespace DUCS\Sankalan\Quiz;
 
 use DUCS\Router;
 use \Symfony\Component\HttpFoundation\JsonResponse;
