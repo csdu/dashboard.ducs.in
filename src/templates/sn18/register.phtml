@@ -9,7 +9,7 @@
   <body>
   <?= partials('sn18/header', [
     'navItem' => [
-      'action' => 'http://www.ducs.in/sankalan/',
+      'action' => 'https://www.ducs.in/sankalan/',
       'title' => 'Main'
     ]
   ]); ?>
@@ -62,7 +62,7 @@
   <?php } else { // no user ?>
     <a class="sign-in-button button" href="<?= $login_url ?>"><img src="https://unpkg.com/simple-icons@1.2.19/icons/google.svg" alt="Google">Sign-in with Google</a>
     <p class="note">
-      By clicking the sign-in button above, you agree to our <a href="http://wwww.ducs.in/sankalan/terms/">terms and conditions</a>.
+      By clicking the sign-in button above, you agree to our <a href="https://wwww.ducs.in/sankalan/terms/">terms and conditions</a>.
     </p>
   <?php } // $user ?>
   <?php if (isset($error)) { ?>
