@@ -72,7 +72,10 @@ const options = {
 };
 
 const cleanDist = () =>
-  gulp.src(distDir, {
+  gulp.src([
+    `${distDir}/css`,
+    `${distDir}/js`,
+  ], {
     read: false,
   })
     .pipe(clean());

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+filesChanged=../scripts/s3/tmp.txt
+
+cd assets
+git add .
+git diff --staged --name-only --diff-filter=AM > $filesChanged
+git commit -q -m "update" > /dev/null
+cd ..
