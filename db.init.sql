@@ -15,3 +15,10 @@ CREATE TABLE `user` (
  UNIQUE KEY `gid` (`gid`),
  UNIQUE KEY `hash` (`hash`)
 );
+
+CREATE TABLE `admin` (
+ `id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+ `uname` VARCHAR(30) NOT NULL,
+ `pass` VARCHAR(64) NOT NULL,
+ `privilage` INT NOT NULL DEFAULT 0
+);

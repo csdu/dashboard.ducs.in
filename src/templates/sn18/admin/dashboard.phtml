@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <?= partials('sn18/head') ?>
+    <title>Admin Dashboard // Sankalan 2018</title>
+    <link rel="stylesheet" href="<?= $mapAsset('sn18/common.css') ?>">
+  </head>
+  <body>
+    <?= partials('sn18/header', [
+      'navItem' => [
+        'action' => '/admin/logout',
+        'title' => 'Logout'
+      ]
+    ]) ?>
+    <div class="banner alt">
+      Hello <strong><?= $name ?></strong>. <br>
+      Your admin privilage level is <?= $privilage ?>.
+    </div>
+
+    <a class="button" href="/admin/create-team">Create Team</a>
+    <a class="button" href="/admin/event-register">Register for Events</a>
+  </body>
+</html>

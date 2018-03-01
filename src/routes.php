@@ -17,6 +17,9 @@ if ('' === $uri) {
 } elseif (startsWith($uri, '/sankalan')) {
     $sankalan = new DUCS\Sankalan\Sankalan($uri);
     $response = $sankalan->getResponse();
+} elseif (startsWith($uri, '/admin')) {
+    $admin = new DUCS\Sankalan\Admin\Admin($uri);
+    $response = $admin->getResponse();
 } else {
     $response = new Response();
     $response->setStatusCode(Response::HTTP_NOT_FOUND);

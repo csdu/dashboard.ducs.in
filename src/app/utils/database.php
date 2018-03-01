@@ -13,3 +13,10 @@ if (!function_exists('formatEmail')) {
         return str_replace('.', '' , $temp);
     }
 }
+
+if (!function_exists('encryptPassword')) {
+    function encryptPassword($plain)
+    {
+        return md5($plain);
+    }
+}
