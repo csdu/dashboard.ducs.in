@@ -21,22 +21,34 @@ class Quiz extends Router
     {
         $uri = $this->uri;
 
-        if (startsWith($uri, '/get-problems')) {
-            include 'get-problems.php';
+        if (startsWith($uri, '/problems')) {
+            include 'problems.php';
             $args = explode("/", $uri); // figure out event name
             if (isset($args[2])) {
                 $this->res = new JsonResponse(getProblems($args[2]));
             }
-            // else {
-            //     // return 400 status
-            // }
+            else {
+                //$this->res = new JsonResponse(getEvents());
+                $this->res->setStatusCode(404);
+            }
+        }
+        else if (startsWith($uri, '/response')) {
+            include 'response.php';
+            $args = explode("/", $uri);
+
+            if ($this->req->isMethod('POST')) {
+                $status = (saveResponse($this->req->getContent())) ? 204 : 406;
+                $this->res->setStatusCode($status);
+            }
+            else if ($this->req->isMethod('GET') && isset($args[2]) && isset($args[3])) {
+                $tid = $args[2]; $eid = $args[3];
+                $this->res = new JsonResponse(getResponse($tid, $eid));
+            }
+            else {
+                $this->res->setStatusCode(404);
+            }
         }
         else if ($uri === '/submit' and $this->req->isMethod('POST')) {
-            $this->res->setContent('quiz home');
-        }
-        else if ($uri === '/respond' and $this->req->isMethod('POST')) {
-            include 'save-response.php';
-            
             $this->res->setContent('quiz home');
         }
         else if ($uri === '') {
@@ -48,7 +60,7 @@ class Quiz extends Router
                 $event = $uri;
             }
             if (!isset($event)) {
-                $this->res->setStatusCode(404);
+                $this->res->setStatusCode(400);
                 return;
             }
             $this->res->setContent('quiz page for : [' . $uri . ']');

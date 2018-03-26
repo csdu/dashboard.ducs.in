@@ -69,6 +69,8 @@ class Database
         $stmt = $this->conn->prepare($statement);
         if (!$stmt->execute($args)) {
             return false;
+            // throw new PDOException("Error Processing Request", 1);
+            // print_r($stmt->errorInfo());
         };
         $result = $stmt->rowCount();
         $stmt->closeCursor();
