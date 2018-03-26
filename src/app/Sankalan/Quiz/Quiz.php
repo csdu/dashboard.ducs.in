@@ -48,11 +48,28 @@ class Quiz extends Router
                 $this->res->setStatusCode(404);
             }
         }
-        else if ($uri === '/submit' and $this->req->isMethod('POST')) {
-            $this->res->setContent('quiz home');
+        else if ($uri === '/submit') {
+            include 'score.php';
+
+            if ($this->req->isMethod('POST')) {
+                $status = (submitEvent($this->req->getContent())) ? 204 : 406;
+                $this->res->setStatusCode($status);
+            }
+            else {
+                $this->res->setStatusCode(404);
+            }
         }
-        else if ($uri === '') {
-            $this->res->setContent('quiz home');
+        else if (startsWith($uri, '/score')) {
+            include 'score.php';
+            $args = explode("/", $uri);
+
+            if ($this->req->isMethod('GET') && isset($args[2]) && isset($args[3])) {
+                $tid = $args[2]; $eid = $args[3];
+                $this->res = new JsonResponse(getScore($tid, $eid));
+            }
+            else {
+                $this->res->setStatusCode(404);
+            }
         } 
          else {
             $event;
