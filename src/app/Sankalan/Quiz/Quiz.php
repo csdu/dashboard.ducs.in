@@ -43,45 +43,50 @@ class Quiz extends Router
         }
 
         else if (startsWith($uri, '/response')) {
-            include 'response.php';
             $args = explode("/", $uri);
 
             if ($this->req->isMethod('POST')) {
-                $status = (saveResponse($this->req->getContent())) ? 204 : 406;
+                $status = (Problems::makeAttempt($this->req->getContent())) ? 204 : 406;
                 $this->res->setStatusCode($status);
             }
             else if ($this->req->isMethod('GET') && isset($args[2]) && isset($args[3])) {
                 $tid = $args[2]; $eid = $args[3];
-                $this->res = new JsonResponse(getResponse($tid, $eid));
+                $this->res = new JsonResponse(Problems::getAttempts($tid, $eid));
             }
             else {
                 $this->res->setStatusCode(404);
             }
         }
-        else if ($uri === '/submit') {
-            include 'score.php';
 
+        else if ($uri === '/submit') {
             if ($this->req->isMethod('POST')) {
-                $status = (submitEvent($this->req->getContent())) ? 204 : 406;
-                $this->res->setStatusCode($status);
+                $params = json_decode($this->req->getContent(), true);
+                if (isset($params['tid']) && isset($params['eid'])) {
+                    $status = (Events::makeSubmission($params['tid'], $params['eid'])) ? 204 : 406;
+                    $this->res->setStatusCode($status);
+                }
+                else {
+                    $this->res->setStatusCode(406);
+                }
             }
             else {
                 $this->res->setStatusCode(404);
             }
         }
+
         else if (startsWith($uri, '/score')) {
-            include 'score.php';
             $args = explode("/", $uri);
 
             if ($this->req->isMethod('GET') && isset($args[2]) && isset($args[3])) {
                 $tid = $args[2]; $eid = $args[3];
-                $this->res = new JsonResponse(getScore($tid, $eid));
+                $this->res = new JsonResponse(Events::score($tid, $eid));
             }
             else {
                 $this->res->setStatusCode(404);
             }
         } 
-         else {
+
+        else {
             $event;
             if (in_array($uri, $this->events)) {
                 $event = $uri;
