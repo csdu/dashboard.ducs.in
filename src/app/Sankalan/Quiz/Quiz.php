@@ -21,7 +21,12 @@ class Quiz extends Router
     {
         $uri = $this->uri;
 
-        if (startsWith($uri, '/problems')) {
+        if ($uri === '/problem' && $this->req->isMethod('POST')) {
+            include 'problems.php';
+            $status = (saveProblem($this->req->getContent())) ? 204 : 406;
+            $this->res->setStatusCode($status);
+        }
+        else if (startsWith($uri, '/problems')) {
             include 'problems.php';
             $args = explode("/", $uri); // figure out event name
             if (isset($args[2])) {
