@@ -33,6 +33,13 @@ function submitEvent($content)
     }
 }
 
+function getEvents() {
+    $db = new Database();
+    $event = $db->query('SELECT * FROM events', [], true);
+
+    return $event;
+}
+
 function getScore($tid, $eid)
 {
     $db = new Database();
