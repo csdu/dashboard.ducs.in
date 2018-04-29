@@ -19,6 +19,9 @@ class Sankalan extends Router
         if (startsWith($uri, '/quiz')) {
             $uri = '/quiz';
         }
+        else if (startsWith($uri, '/admin')) {
+            $uri = '/admin';
+        }
         switch ($uri) {
             case '':
                 $this->html = Me::view();
@@ -59,6 +62,11 @@ class Sankalan extends Router
 
             case '/quiz':
                 $quiz = new Quiz\Quiz($this->uri);
+                $this->res = $quiz->getResponse();
+                break;
+
+            case '/admin':
+                $quiz = new Admin\Admin($this->uri);
                 $this->res = $quiz->getResponse();
                 break;
 
